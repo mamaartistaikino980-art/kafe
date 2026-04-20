@@ -1,137 +1,213 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Шашлычная «У Горыныча» — сочные шашлыки в Новосибирске</title>
+    <title>Магазин «Османлы» — восточные деликатесы</title>
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Шапка с навигацией -->
+    <!-- Шапка с навигацией и корзиной -->
     <header class="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <h1>У Османлы</h1>
-                    <span>Шашлычная с 2020 года</span>
-                </div>
-                <nav class="nav">
-                    <ul class="nav-list">
-                        <li><a href="#home" class="nav-link active">Главная</a></li>
-                        <li><a href="#menu" class="nav-link">Меню</a></li>
-                        <li><a href="#about" class="nav-link">О нас</a></li>
-                        <li><a href="#reviews" class="nav-link">Отзывы</a></li>
-                        <li><a href="#contacts" class="nav-link">Контакты</a></li>
-                    </ul>
-                </nav>
-            </div>
+                    <h1>Османлы</h1>
+            <span>Восточные деликатесы с доставкой</span>
         </div>
-    </header>
-
-    <!-- Герой‑секция -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Шашлычная «У Османлы»</h1>
-                <p>Сочные шашлыки, приготовленные по старинным рецептам</p>
-                <a href="#menu" class="btn">Посмотреть меню</a>
-            </div>
+        <div class="cart-info">
+            <button class="cart-btn" id="cartToggle">
+                🛒 Корзина (<span id="cartCount">0</span>)
+            </button>
         </div>
-    </section>
+    </div>
+</header>
 
-    <!-- Меню -->
-    <section id="menu" class="section">
-        <div class="container">
-            <h2>Наше меню</h2>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <div class="item-icon">🍖</div>
-                    <h3>Шашлык из свинины</h3>
-                    <p>Нежный шашлык из отборной свинины с ароматными специями</p>
-                    <div class="price">350 тенге. / 200 г</div>
-                </div>
-                <div class="menu-item">
-                    <div class="item-icon">🌶️</div>
-                    <h3>Люля‑кебаб</h3>
-                    <p>Сочный люля‑кебаб из баранины с зеленью</p>
-                    <div class="price">400 тенге. / 250 г</div>
-                </div>
-                <div class="menu-item">
-                    <div class="item-icon">🍆</div>
-                    <h3>Овощной гриль</h3>
-                    <p>Баклажаны, кабачки, перец, помидоры на гриле</p>
-                    <div class="price">250 тенге. / 300 г</div>
-                </div>
-                <div class="menu-item">
-                    <div class="item-icon">🥐</div>
-                    <h3>Хачапури по‑аджарски</h3>
-                    <p>Традиционное грузинское блюдо с сыром и яйцом</p>
-                    <div class="price">300 тенге.</div>
-                </div>
-            </div>
+<!-- Корзина (изначально скрыта) -->
+<div class="cart-modal" id="cartModal">
+    <div class="cart-content">
+        <h2>Ваша корзина</h2>
+        <button class="close-btn" id="closeCart">×</button>
+        <div id="cartItems"></div>
+        <div class="cart-total">
+            <strong>Итого: <span id="cartTotal">0</span> тенге</strong>
         </div>
-    </section>
+    </div>
+    <div class="payment-form">
+    <h3>Оплата заказа</h3>
+    <div class="form-group">
+        <label for="cardNumber">Номер карты</label>
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+    </div>
+    <div class="form-group">
+        <label>Срок действия</label>
+        <div class="date-group">
+            <select id="expMonth" required>
+                <option value="" disabled selected>Месяц</option>
+                <option value="01">01 — Январь</option>
+                <option value="02">02 — Февраль</option>
+                <option value="03">03 — Март</option>
+                <option value="04">04 — Апрель</option>
+                <option value="05">05 — Май</option>
+                <option value="06">06 — Июнь</option>
+                <option value="07">07 — Июль</option>
+                <option value="08">08 — Август</option>
+                <option value="09">09 — Сентябрь</option>
+                <option value="10">10 — Октябрь</option>
+                <option value="11">11 — Ноябрь</option>
+                <option value="12">12 — Декабрь</option>
+            </select>
+            <select id="expYear" required>
+                <option value="" disabled selected>Год</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                <option value="2031">2031</option>
+                <option value="2032">2032</option>
+                <option value="2033">2033</option>
+                <option value="2034">2034</option>
+                <option value="2035">2035</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="password" id="cvv" placeholder="123" maxlength="3">
+    </div>
+    <button class="btn btn-pay" id="payButton">Оплатить</button>
+    <p class="payment-info">Данные карты передаются напрямую платёжному шлюзу</p>
+</div>
 
-    <!-- О нас -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2>О нашей шашлычной</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Мы работаем с 2020 года и за это время заслужили любовь новосибирцев благодаря:</p>
-                    <ul>
-                <li>Свежайшему мясу от местных фермеров</li>
-                <li>Аутентичным рецептам кавказской кухни</li>
-                <li>Дружелюбному обслуживанию</li>
-                <li>Уютной атмосфере</li>
+</div>
+
+<!-- Герой‑секция с кнопкой «О нас» -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Магазин «Османлы»</h1>
+            <p>Аутентичные восточные деликатесы с доставкой на дом</p>
+
+            <!-- Кнопка «О нас» -->
+            <button class="btn btn-about" id="aboutBtn">
+                📖 О нас
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Модальное окно «О нас» -->
+<div class="modal" id="aboutModal">
+    <div class="modal-content">
+        <span class="close" id="closeAbout">&times;</span>
+        <h2>Кафе «Османлы»</h2>
+        <div class="about-text">
+            <p>Добро пожаловать в кафе «Османлы» — уголок настоящей восточной культуры в сердце города!</p>
+            <p>Мы открылись в 2020 году с миссией познакомить горожан с аутентичной восточной кухней. Каждое блюдо готовится по традиционным рецептам, передаваемым из поколения в поколение.</p>
+            <p>В нашем меню вы найдёте:</p>
+            <ul>
+                <li>Аутентичные шашлыки и кебабы</li>
+                <li>Восточные десерты ручной работы</li>
+                <li>Ароматные специи и пряности</li>
+                <li>Традиционные восточные напитки</li>
             </ul>
-            <p>Приходите всей семьёй — мы создадим атмосферу настоящего кавказского застолья!</p>
-                </div>
-            </div>
+            <p>Интерьер кафе оформлен в традиционном восточном стиле с мягкими диванами, коврами ручной работы и приглушённым освещением, создающим уютную атмосферу.</p>
+            <p><strong>Мы гордимся:</strong> использованием только натуральных ингредиентов, свежими продуктами и внимательным отношением к каждому гостю.</p>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- Отзывы -->
-    <section id="reviews" class="section">
-        <div class="container">
-            <h2>Отзывы наших гостей</h2>
-            <div class="reviews-grid">
-                <div class="review">
-                    <p>«Лучший шашлык в городе! Обязательно вернусь ещё.»</p>
-                    <span class="author">— Иван Петров</span>
-                </div>
-                <div class="review">
-                    <p>«Уютная атмосфера и очень вкусно!»</p>
-                    <span class="author">— Мария Сидорова</span>
-                </div>
-                <div class="review">
-                    <p>«Регулярно отмечаем здесь дни рождения!»</p>
-                    <span class="author">— Алексей Козлов</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Каталог товаров -->
+<section class="section shop">
+    <div class="container">
+    <h2 class="section-title">Наш ассортимент</h2>
+    <div class="menu-categories">
+        <button class="category-btn active" data-category="all">
+            <span class="btn-icon">🍽️</span>
+            <span class="btn-text">Все товары</span>
+        </button>
+        <button class="category-btn" data-category="shashlik">
+            <span class="btn-icon">🍖</span>
+            <span class="btn-text">Шашлыки</span>
+        </button>
+        <button class="category-btn" data-category="kebab">
+            <span class="btn-icon">🌶️</span>
+            <span class="btn-text">Кебабы</span>
+        </button>
+        <button class="category-btn" data-category="desserts">
+            <span class="btn-icon">🍮</span>
+            <span class="btn-text">Десерты</span>
+        </button>
+    </div>
+</div>
 
-    <!-- Контакты -->
-    <section id="contacts" class="section">
-        <div class="container">
-            <h2>Как нас найти</h2>
-            <div class="contact-info">
-                <p><strong>Адрес:</strong> г. Риддер, ул. незовисимости, 15</p>
-                <p><strong>Телефон:</strong> +7 (705) 520‑00‑30</p>
-                <p><strong>Часы работы:</strong> ежедневно с 8:00 до 23:00</p>
-                <p><strong>Email:</strong> DED@Garibli.kz</p>
-                <a href="tel:+73831234567" class="btn" style="margin-top: 1rem;">Позвонить для бронирования</a>
-            </div>
-        </div>
-    </section>
+<div class="menu-grid" id="menu-items">
+    <!-- Шашлыки -->
+    <div class="menu-item" data-category="shashlik" data-price="850" data-name="Шашлык из баранины">
+        <div class="item-icon">🍖</div>
+        <h3>Шашлык из баранины</h3>
+        <p>Нежный шашлык из отборной баранины с ароматными специями</p>
+        <div class="price">850 тенге / 200 г</div>
+        <button class="add-to-cart" data-id="1" data-name="Шашлык из баранины" data-price="850">В корзину</button>
+    </div>
 
-    <!-- Футер -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2020 Шашлычная «У Османлы». Все права защищены.</p>
-        </div>
-    </footer>
+    <div class="menu-item" data-category="shashlik" data-price="750" data-name="Шашлык из свинины">
+        <div class="item-icon">🥩</div>
+        <h3>Шашлык из свинины</h3>
+        <p>Сочный шашлык из фермерской свинины</p>
+        <div class="price">750 тенге / 200 г</div>
+        <button class="add-to-cart" data-id="2" data-name="Шашлык из свинины" data-price="750">В корзину</button>
+    </div>
+
+    <!-- Кебабы -->
+    <div class="menu-item" data-category="kebab" data-price="900" data-name="Люля‑кебаб">
+        <div class="item-icon">🌶️</div>
+        <h3>Люля‑кебаб</h3>
+        <p>Традиционный люля‑кебаб из баранины с зеленью</p>
+        <div class="price">900 тенге / 250 г</div>
+        <button class="add-to-cart" data-id="3" data-name="Люля‑кебаб" data-price="900">В корзину</button>
+    </div>
+
+    <div class="menu-item" data-category="kebab" data-price="650" data-name="Кебаб из курицы">
+        <div class="item-icon">🍗</div>
+        <h3>Кебаб из курицы</h3>
+        <p>Диетический вариант с пряными травами</p>
+        <div class="price">650 тенге / 250 г</div>
+        <button class="add-to-cart" data-id="4" data-name="Кебаб из курицы" data-price="650">В корзину</button>
+    </div>
+
+    <!-- Десерты -->
+    <div class="menu-item" data-category="desserts" data-price="450" data-name="Пахлава">
+        <div class="item-icon">🍮</div>
+        <h3>Пахлава</h3>
+        <p>Настоящая восточная пахлава с мёдом и орехами</p>
+        <div class="price">450 тенге / порция</div>
+        <button class="add-to-cart" data-id="5" data-name="Пахлава" data-price="450">В корзину</button>
+    </div>
+
+    <div class="menu-item" data-category="desserts" data-price="350" data-name="Кофе по‑восточному">
+        <div class="item-icon">☕</div>
+        <h3>Кофе по‑восточному</h3>
+        <p>Ароматный кофе, сваренный в турке с традиционными специями</p>
+        <div class="price">350 тенге / чашка</div>
+        <button class="add-to-cart" data-id="6" data-name="Кофе по‑восточному" data-price="350">В корзину</button>
+    </div>
+</div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2020 Магазин «Османлы». Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="./JS/script.js"></script>
 </body>
 </html>
